@@ -34,18 +34,30 @@ const apple = new Fruit({
 //make the person schema
 const personSchema = new mongoose.Schema({
     name: String,
-    age: Number
+    age: Number,
+    favoriteFruit: fruitSchema
 });
 //make the model
 const Person = mongoose.model("Person", personSchema);
 
+const dragonfruit = new Fruit({
+    name: "Dragonfruit",
+    rating: 9,
+    review: "needs to be perfectly ripe."
+})
+
+//dragonfruit.save();
+
+
 //use the model
 const person = new Person({
     name: "John",
-    age: 16
+    age: 16,
+    favoriteFruit: dragonfruit
 });
 
 //person.save();
+
 
 Person.find(function(err, fruits) {
     if (err) {
@@ -55,7 +67,7 @@ Person.find(function(err, fruits) {
 
 
         fruits.forEach(function(element) {
-            console.log(element.name)
+            console.log(element)
         });
     }
 });
@@ -69,12 +81,12 @@ Fruit.updateOne({ name: "apple" }, { rating: 7 }, function(err) {
     }
 });
 
-Person.deleteMany({ name: "John" }, function(err) {
+Fruit.deleteMany({ name: "Joh" }, function(err) {
     if (err) {
         console.log(err);
 
     } else {
         console.log("Successfully deleted from the document");
-        mongoose.connection.close();
+
     }
 });
