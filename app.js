@@ -69,7 +69,7 @@ Fruit.updateOne({ name: "apple" }, { rating: 7 }, function(err) {
     }
 });
 
-Fruit.deleteOne({ name: "apple" }, function(err) {
+Person.deleteMany({ name: "John" }, function(err) {
     if (err) {
         console.log(err);
 
