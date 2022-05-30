@@ -23,40 +23,12 @@ const Fruit = mongoose.model("Fruit", fruitSchema);
 
 //use the model
 const apple = new Fruit({
-    name: "",
+    name: "Apple",
     rating: 6,
     review: "heathy fruit"
 });
 
 //apple.save();
-// const kiwi = new Fruit({
-//     name: "Kiwi",
-//     rating: 9,
-//     review: "great fruit"
-// });
-// const orange = new Fruit({
-//     name: "Orange",
-//     rating: 8,
-//     review: "great fruit"
-// });
-// const banana = new Fruit({
-//     name: "Banana",
-//     rating: 9,
-//     review: "great fruit"
-// });
-
-// //insert multiple objects
-
-// // Fruit.insertMany([apple, kiwi, orange, banana], function(err) {
-// //     if (err) {
-// //         console.log(err);
-// //     } else {
-// //         console.log("Successfully saved all the fruits to fruitsDB.");
-// //         mongoose.Connection.close();
-// //     }
-// // });
-
-
 
 //person
 //make the person schema
@@ -75,16 +47,34 @@ const person = new Person({
 
 //person.save();
 
-Fruit.find(function(err, fruits) {
+Person.find(function(err, fruits) {
     if (err) {
         console.log(err);
 
     } else {
 
-        mongoose.connection.close();
 
         fruits.forEach(function(element) {
             console.log(element.name)
         });
+    }
+});
+
+Fruit.updateOne({ name: "apple" }, { rating: 7 }, function(err) {
+    if (err) {
+        console.log(err);
+
+    } else {
+        console.log("Successfully updated the document");
+    }
+});
+
+Fruit.deleteOne({ name: "apple" }, function(err) {
+    if (err) {
+        console.log(err);
+
+    } else {
+        console.log("Successfully deleted from the document");
+        mongoose.connection.close();
     }
 });
